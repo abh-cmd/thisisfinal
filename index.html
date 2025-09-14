@@ -9,6 +9,110 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        #why-heading.section-title,
+        #philosophy-heading.section-title,
+        #contact-heading.section-title {
+            font-size: 3.1rem;
+        }
+        /* Hero section text style for all text boxes */
+        .about-content-box .section-title,
+        .focus-content-box .section-title,
+        .why-content-box .section-title,
+        .philosophy-content-box .section-title,
+        .contact-content-box .section-title {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.04em;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.8), 0 0 20px rgba(6,163,218,0.3);
+            font-size: 2.7rem;
+        }
+        /* Make all subsection titles bigger */
+        .section-title {
+            font-size: 2.7rem;
+        }
+        .focus-content-box .section-title {
+            font-size: 3.1rem;
+        }
+        .focus-content-box .section-content {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        .focus-content-box {
+            position: relative;
+            z-index: 5;
+        background: linear-gradient(135deg, #071e26 0%, #05202c 100%) !important;
+            padding: 1.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            width: 100% !important;
+            max-width: 1400px !important;
+            margin: 0 auto 1.2rem auto;
+        border: 1.5px solid #0a3a4a !important;
+        box-shadow: 0 8px 32px rgba(6, 163, 218, 0.10), 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+               box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        .focus-content-box .section-title,
+        .focus-content-box .section-subtitle {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .about-content-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(45deg, #06a3da, #ffffff, #06a3da, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .about-content-box .section-title {
+            font-size: 2.7rem;
+        }
+        .focus-content-box {
+            position: relative;
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 1.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            max-width: 550px;
+            margin: 0 auto 1.2rem auto;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        .focus-content-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(45deg, #06a3da, #ffffff, #06a3da, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .hero-logo.hide-on-scroll {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
         /* Reset and base */
         *, *::before, *::after {
             box-sizing: border-box;
@@ -54,28 +158,50 @@
             overflow: hidden;
         }
         .hero-logo {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            z-index: 10;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1rem;
-            border-radius: 16px;
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transform: translateX(-20px);
-            animation: fadeInLeft 1.5s ease-out 0.8s forwards;
+            background: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            border: 1px solid rgba(255,255,255,0.15);
+            opacity: 1;
+            transform: none;
+            animation: none;
+        }
+        .hero-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(45deg, #06a3da, #ffffff, #06a3da, #ffffff);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            z-index: -1;
+        }
+        .hero-logo:hover {
+            box-shadow: 0 8px 32px 0 rgba(6,163,218,0.28), 0 3px 0 rgba(6,163,218,0.18);
+            background: linear-gradient(90deg, rgba(6,163,218,0.08) 0%, rgba(255,255,255,0.04) 100%);
         }
         .hero-logo img {
             height: 90px;
             width: auto;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6)) brightness(1.2) contrast(1.1);
-            transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6)) brightness(1.2) contrast(1.1)
+                drop-shadow(0 0 16px rgba(6,163,218,0.35)) drop-shadow(0 0 32px rgba(6,163,218,0.18));
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
         .hero-logo:hover img {
             transform: scale(1.05);
@@ -112,13 +238,14 @@
         .hero-navigation {
             position: absolute;
             top: 1rem;
-            right: 1rem;
+            right: 2rem;
             z-index: 10;
             display: flex;
-            gap: 2rem;
-            opacity: 0;
-            transform: translateX(20px);
-            animation: fadeInRight 1.5s ease-out 1.2s forwards;
+            gap: 2.5rem;
+            background: none;
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
         }
         .nav-link {
             font-family: 'Inter', sans-serif;
@@ -340,7 +467,7 @@
         }
         
         .section-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -683,6 +810,7 @@
             position: relative;
             overflow: hidden;
         }
+        }
         
         .bullet-item::before {
             content: '';
@@ -919,14 +1047,14 @@
         }
         /* Philosophy Quote Card */
         .philosophy-card {
-            background: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(135deg, #06a3da 0%, #0f3854 100%) !important;
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        border: 3px solid #2196f3 !important;
             backdrop-filter: blur(10px);
             margin: 3rem auto;
-            max-width: 800px;
+            max-width: 900px;
             opacity: 0;
             transform: translateY(50px);
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -953,9 +1081,9 @@
             font-style: italic;
             font-weight: 500;
             font-size: 1.4rem;
-            color: #1a1a1a;
-            letter-spacing: -0.01em;
-            line-height: 1.6;
+    color: #ffffff !important;
+            letter-spacing: 0.01em;
+            line-height: 1.7;
             margin: 0 0 1.5rem 0;
             text-align: center;
         }
@@ -1014,6 +1142,42 @@
         }
         /* Responsive typography */
         @media (min-width: 600px) {
+            .hero-logo {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                right: auto !important;
+                z-index: 100 !important;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                background: #fff;
+                padding: 0.5rem 1.5rem;
+                border-radius: 20px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+                border: 1px solid rgba(255,255,255,0.15);
+                opacity: 1;
+                transform: none;
+                animation: none;
+            }
+            .hero-logo::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 20px;
+                padding: 2px;
+                background: linear-gradient(45deg, #06a3da, #ffffff, #06a3da, #ffffff);
+                background-size: 400% 400%;
+                animation: gradientShift 3s ease infinite;
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                mask-composite: exclude;
+                z-index: -1;
+            }
             header.hero h1 {
                 font-size: 2.2rem;
                 letter-spacing: -0.03em;
@@ -1035,13 +1199,22 @@
                 padding-top: 2.5rem;
             }
             .hero-logo {
-                position: relative;
-                top: -18px;
-                margin-bottom: 2.2rem;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100vw;
+                min-width: 100vw;
+                max-width: 100vw;
+                margin: 0;
+                z-index: 100;
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
-                padding: 0.2rem;
+                padding: 0.5rem 0 0.5rem 0;
+                background: rgba(0,0,0,0.6);
+                border-radius: 0 0 16px 16px;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            }
             }
             .hero-logo img {
                 height: 36px;
@@ -1210,26 +1383,24 @@
         <!-- About Us Section -->
         <section id="about" tabindex="-1" aria-labelledby="about-heading">
             <div class="section-container">
-                <div class="section-header">
-                    <h2 id="about-heading" class="section-title">About Us</h2>
-                </div>
-                <div class="section-content">
-                    <div class="about-hero">
-                        <div class="about-content">
-                            <p class="about-intro">
-                                Agnezar Life Sciences is a new-age life sciences company built on the principle that <span class="about-highlight">true innovation begins with purity</span> — in science, in process, and in purpose.
-                            </p>
-                            <p class="about-description">
-                                We combine global expertise with a strong commitment to patient well-being, bringing high-quality pharmaceutical solutions worldwide.
-                            </p>
-                            
-                            <div class="typewriter-component">
-                                <div class="typewriter-intro">Agnezar, your hub for</div>
-                                <div class="typewriter-text">
-                                    <span class="word-1">Purity</span>
-                                    <span class="word-2">Innovation</span>
-                                    <span class="word-3">Excellence</span>
-                                    <span class="typewriter-cursor"></span>
+                <div class="about-content-box">
+                    <div class="section-header">
+                        <h2 id="about-heading" class="section-title">About Us</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="about-hero">
+                            <div class="about-content">
+                                <p class="about-intro">
+                                    <span style="display: block; font-size: 1.7rem; font-weight: 600; color: #06a3da; text-align: center; margin-bottom: 1.2rem; line-height: 1.5;">Agnezar Life Sciences is a new-age life sciences company built on the principle that <span class="about-highlight">true innovation begins with purity</span> — in science, in process, and in purpose.</span>
+                                <span style="display: block; font-size: 1.35rem; font-weight: 500; color: #e8f4fd; text-align: center; margin-bottom: 1.2rem; line-height: 1.5;">We combine global expertise with a strong commitment to patient well-being, bringing high-quality pharmaceutical solutions worldwide.</span>
+                                <div class="typewriter-component">
+                                    <div class="typewriter-intro">Agnezar, your hub for</div>
+                                    <div class="typewriter-text">
+                                        <span class="word-1">Purity</span>
+                                        <span class="word-2">Innovation</span>
+                                        <span class="word-3">Excellence</span>
+                                        <span class="typewriter-cursor"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1238,14 +1409,43 @@
             </div>
         </section>
 
-        <!-- Our Focus Section -->
+    <!-- Our Focus Section -->
+        <div style="height: 4rem;"></div> <!-- Spacer for separation -->
         <section id="focus" tabindex="-1" aria-labelledby="focus-heading">
             <div class="section-container">
-                <div class="section-header">
-                    <h2 id="focus-heading" class="section-title">Our Focus</h2>
-                    <p class="section-subtitle">While we are at the beginning of our journey, our vision is clear</p>
+                <!-- Why Agnezar Box -->
+                <div class="focus-content-box">
+                    <div class="section-header">
+                        <h2 id="why-heading" class="section-title">Why Agnezar</h2>
+                        <p class="section-subtitle">The advantages that set us apart in the life sciences industry</p>
+                    </div>
+                    <div class="bullet-grid">
+                        <div class="bullet-item">
+                            <h3 class="bullet-title">Purity at Every Step</h3>
+                            <p class="bullet-description">From research to delivery, we maintain uncompromising standards of purity and quality.</p>
+                        </div>
+                        <div class="bullet-item">
+                            <h3 class="bullet-title">Science with Purpose</h3>
+                            <p class="bullet-description">Solutions designed to address real-world health challenges and improve patient outcomes.</p>
+                        </div>
+                        <div class="bullet-item">
+                            <h3 class="bullet-title">Global Outlook</h3>
+                            <p class="bullet-description">Headquartered in the USA, connected worldwide with a truly international perspective.</p>
+                        </div>
+                        <div class="bullet-item">
+                            <h3 class="bullet-title">Trust & Quality</h3>
+                            <p class="bullet-description">Building lasting relationships through consistent excellence and reliable partnerships.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="section-content">
+                <div style="height: 2.5rem;"></div> <!-- Spacer between boxes -->
+                <!-- Our Focus Box -->
+                <div class="focus-content-box">
+                    <div class="section-header" style="opacity: 1 !important; animation: none !important;">
+                        <h2 id="focus-heading" class="section-title">Our Focus</h2>
+                        <p class="section-subtitle">While we are at the beginning of our journey, our vision is clear.<br>We are committed to driving meaningful change in life sciences through innovation and collaboration.</p>
+                        <p class="about-description" style="color: #e8f4fd; font-size: 1.2rem; text-align: center; margin-top: 1rem; opacity: 1 !important; animation: none !important;">Our Focus is to advance health through uncompromising quality, scientific innovation, and ethical responsibility. We strive to deliver solutions that make a real difference in the lives of patients and communities worldwide.</p>
+                    </div>
                     <div class="focus-hero">
                         <div class="focus-intro">
                             <h3 class="focus-intro-title">Driving Innovation Through</h3>
@@ -1281,50 +1481,23 @@
             </div>
         </section>
 
-        <!-- Why Agnezar Section -->
-        <section id="why" tabindex="-1" aria-labelledby="why-heading">
-            <div class="section-container">
-                <div class="section-header">
-                    <h2 id="why-heading" class="section-title">Why Agnezar</h2>
-                    <p class="section-subtitle">The advantages that set us apart in the life sciences industry</p>
-                </div>
-                <div class="section-content">
-                    <div class="bullet-grid">
-                        <div class="bullet-item">
-                            <h3 class="bullet-title">Purity at Every Step</h3>
-                            <p class="bullet-description">From research to delivery, we maintain uncompromising standards of purity and quality.</p>
-                        </div>
-                        <div class="bullet-item">
-                            <h3 class="bullet-title">Science with Purpose</h3>
-                            <p class="bullet-description">Solutions designed to address real-world health challenges and improve patient outcomes.</p>
-                        </div>
-                        <div class="bullet-item">
-                            <h3 class="bullet-title">Global Outlook</h3>
-                            <p class="bullet-description">Headquartered in the USA, connected worldwide with a truly international perspective.</p>
-                        </div>
-                        <div class="bullet-item">
-                            <h3 class="bullet-title">Trust & Quality</h3>
-                            <p class="bullet-description">Building lasting relationships through consistent excellence and reliable partnerships.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Philosophy Section -->
+    <!-- Philosophy Section -->
+    <div style="height: 4rem;"></div> <!-- Spacer for separation -->
         <section id="philosophy" tabindex="-1" aria-labelledby="philosophy-heading">
-            <div class="section-container">
+            <div class="section-container philosophy-highlighted-outer" style="position: relative;">
+                <span style="content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 28px; padding: 3px; background: linear-gradient(45deg, #06a3da, #ffffff, #06a3da, #ffffff); background-size: 400% 400%; animation: gradientShift 3s ease infinite; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; z-index: -1; display: block;"></span>
                 <div class="section-header">
                     <h2 id="philosophy-heading" class="section-title">Our Philosophy</h2>
                     <p class="section-subtitle">The principles that guide our mission and drive our innovation</p>
                 </div>
                 <div class="section-content">
-                    <div class="philosophy-card" style="background: linear-gradient(135deg, rgba(6, 163, 218, 0.1), rgba(15, 56, 84, 0.05)); border-radius: 24px; box-shadow: 0 8px 32px rgba(6, 163, 218, 0.08); border: 1px solid rgba(255,255,255,0.15); padding: 2.5rem 1.5rem;">
-                        <div class="philosophy-quote" style="font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 1.3rem; color: #0f3854; font-style: italic; line-height: 1.7; text-align: center; white-space: pre-line; letter-spacing: 0.01em;">
-                            <span style="color: #2196f3; font-weight: 600;">In the pursuit of health, there is no room for compromise.</span><br>
-                            <span style="color: #2196f3; font-weight: 600;">Every molecule matters, every process counts,</span><br>
-                            <span style="color: #2196f3; font-weight: 600;">and every life we touch deserves our absolute best.</span><br>
-                            <span style="color: #2196f3; font-weight: 600;">— Agnezar Life Sciences</span>
+                    <div class="philosophy-card philosophy-highlighted">
+                        <span style="content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 24px; padding: 2px; background: linear-gradient(45deg, #06a3da, #ffffff, #06a3da, #ffffff); background-size: 400% 400%; animation: gradientShift 3s ease infinite; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; z-index: -1; display: block;"></span>
+                        <div class="philosophy-quote" style="background: rgba(0, 0, 0, 0.15); border-radius: 20px; backdrop-filter: blur(4px); max-width: 800px; margin: 0 auto; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 1.3rem; color: #0f3854; font-style: italic; line-height: 1.7; text-align: center; white-space: pre-line; letter-spacing: 0.01em; padding: 2.5rem 1.5rem;">
+                            <span style="color: #fff; font-weight: 600;">In the pursuit of health, there is no room for compromise.</span><br>
+                            <span style="color: #fff; font-weight: 600;">Every molecule matters, every process counts,</span><br>
+                            <span style="color: #fff; font-weight: 600;">and every life we touch deserves our absolute best.</span><br>
+                            <span style="color: #fff; font-weight: 600;">— Agnezar Life Sciences</span>
                         </div>
                     </div>
                 </div>
@@ -1376,10 +1549,20 @@
     </main>
 
     <footer style="text-align: center; padding: 2rem; background-color: #0f3854; color: white; margin-top: 2rem;">
-        <p>&copy; 2024 Agnezar Life Sciences. All rights reserved.</p>
+    <p>&copy; 2025 Agnezar Life Sciences. All rights reserved.</p>
     </footer>
 
     <script>
+        // Hide logo on scroll
+        window.addEventListener('scroll', function() {
+            const logo = document.querySelector('.hero-logo');
+            if (!logo) return;
+            if (window.scrollY > 40) {
+                logo.classList.add('hide-on-scroll');
+            } else {
+                logo.classList.remove('hide-on-scroll');
+            }
+        });
         // Slideshow functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
@@ -1405,21 +1588,16 @@
         // Navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
-            
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
                     // Remove active class from all links
                     navLinks.forEach(nav => nav.classList.remove('active'));
-                    
                     // Add active class to clicked link
                     this.classList.add('active');
-                    
                     // Get target section
                     const targetId = this.getAttribute('href').substring(1);
                     const targetSection = document.getElementById(targetId);
-                    
                     if (targetSection) {
                         // Smooth scroll to target section
                         targetSection.scrollIntoView({
